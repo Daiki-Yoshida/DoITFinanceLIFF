@@ -29,11 +29,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
     <script>
-
         $(document).ready(function () {
             const liffId = "2006729829-pZPgWrm0";
             initializeLiff(liffId);
-        })
+
+            // URLからクエリパラメータを取得する
+            const params = (new URL(document.location)).searchParams;
+            const key = params.get('key');
+
+            if (key) {
+                $('input[name="name"]').val(key);
+            }
+        });
 
         function initializeLiff(liffId) {
             liff.init({
