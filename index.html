@@ -11,7 +11,7 @@
 
     <form class="w-75 mx-auto">
         <p class="mt-3">費目名</p>
-            <select class="form-control w-100 mt-1" name="name" id="item-name" required>
+            <select class="form-control w-100 mt-1" name="item-name" id="item-name" required>
                 <option value="" disabled selected>選択してください</option>
             </select>
         <p class="mt-3">金額</p>
@@ -20,8 +20,8 @@
         </div>
         <input type="submit" class="mt-4 btn btn-primary" value="送信">
 
-        <p class="text-muted mt-3" style="font-size: small;">version0.0.3.5</p>
-    </form>
+        <p class="text-muted mt-3" style="font-size: small;">version0.0.4</p>
+    </form>４
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -32,16 +32,13 @@
         $(document).ready(function () {
             // URLからクエリパラメータを取得する
             const params = (new URL(document.location)).searchParams;
-            let  liffId = params.get('liffid');
             let  type = params.get('type');
 
             if (params.has('liff.state')) {
                 const liffStateParams = new URLSearchParams(params.get('liff.state'));
-                if (!liffId) liffId = liffStateParams.get('liffid');
                 if (!type) type = liffStateParams.get('type');
             }
 
-            console.log(liffId);
             console.log(type);
 
             initializeLiff("2006729829-pZPgWrm0");
@@ -89,7 +86,7 @@
 
         $(function () {
             $('form').submit(function () {
-                const name    = $('input[name="name"]').val();
+                const name    = $('select[name="item-name"]').val();
                 const amount = $('input[name="amount"]').val();
                 const msg = `${name}\n${amount}`;
                 sendText(msg);
