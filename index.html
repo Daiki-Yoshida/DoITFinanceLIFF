@@ -20,8 +20,8 @@
         </div>
         <input type="submit" class="mt-4 btn btn-primary" value="送信">
 
-        <p class="text-muted mt-3" style="font-size: small;">version0.0.4</p>
-    </form>４
+        <p class="text-muted mt-3" style="font-size: small;">version0.0.4.1</p>
+    </form>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -32,14 +32,17 @@
         $(document).ready(function () {
             // URLからクエリパラメータを取得する
             const params = (new URL(document.location)).searchParams;
-            let  type = params.get('type');
+            let type = params.get('type');
+            let liffId = params.get('liffid');
 
             if (params.has('liff.state')) {
                 const liffStateParams = new URLSearchParams(params.get('liff.state'));
                 if (!type) type = liffStateParams.get('type');
+                if (!liffId) liffId = liffStateParams.get('liffid');
             }
 
             console.log(type);
+            console.log(liffId);
 
             initializeLiff("2006729829-pZPgWrm0");
 
