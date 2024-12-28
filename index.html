@@ -42,10 +42,10 @@
                 if (!liffId) liffId = liffStateParams.get('liffid');
             }
 
-            console.log(type);
-            console.log(liffId);
+            console.log('Type:', type);
+            console.log('LIFF ID:', liffId);
 
-            initializeLiff(liffId);
+            initializeLiff("2006729829-pZPgWrm0");
 
             const typeDisplay = $('#type-display');
             if (type === 'income') {
@@ -65,7 +65,6 @@
                 options = expenditureOptions;
             }
 
-            // 選択肢を追加
             options.forEach(option => {
                 itemNameSelect.append(new Option(option, option));
             });
