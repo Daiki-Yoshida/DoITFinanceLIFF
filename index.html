@@ -10,6 +10,9 @@
 <body>
 
     <form class="w-75 mx-auto">
+        <p class="mt-3">
+            <span id="type-display"></span>
+        </p>
         <p class="mt-3">費目名</p>
             <select class="form-control w-100 mt-1" name="item-name" id="item-name" required>
                 <option value="" disabled selected>選択してください</option>
@@ -20,7 +23,7 @@
         </div>
         <input type="submit" class="mt-4 btn btn-primary" value="送信">
 
-        <p class="text-muted mt-3" style="font-size: small;">version0.0.5</p>
+        <p class="text-muted mt-3" style="font-size: small;">version0.0.6</p>
     </form>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -45,6 +48,13 @@
             console.log(liffId);
 
             initializeLiff("2006729829-pZPgWrm0");
+
+            const typeDisplay = $('#type-display');
+            if (type === 'income') {
+                typeDisplay.text('収入');
+            } else if (type === 'expenditure') {
+                typeDisplay.text('支出');
+            }
 
             const itemNameSelect = $('#item-name');
             const incomeOptions = ['所得', '贈与', 'その他'];
@@ -89,9 +99,10 @@
 
         $(function () {
             $('form').submit(function () {
+                const type   = $('#type-display').text();
                 const name    = $('select[name="item-name"]').val();
                 const amount = $('input[name="amount"]').val();
-                const msg = `${name}\n${amount}`;
+                const msg = `${type}\n${name}\n${amount}`;
                 sendText(msg);
                 return false;
             });
